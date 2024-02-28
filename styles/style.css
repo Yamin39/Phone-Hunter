@@ -10,7 +10,7 @@ font-open-sans {
 
 /* media queries */
 
-@media screen and (max-width: 640) {
+@media screen and (max-width: 640px) {
   html {
     font-size: 3.5vw;
   }
