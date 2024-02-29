@@ -46,7 +46,7 @@ function displayPhone(phones, isShowBtnVisible) {
     div.classList = "card border border-[#CFCFCF]";
     div.innerHTML = `
     <figure class="px-10 pt-10">
-        <img src="${phone.image}" alt="Phone" class="rounded-xl" />
+        <img src="${phone.image}" alt="${phone.phone_name}" />
     </figure>
     <div class="card-body items-center text-center">
         <h2 class="card-title font-bold text-2xl text-dark-2">
@@ -59,7 +59,7 @@ function displayPhone(phones, isShowBtnVisible) {
             $999
         </span>
         <div class="card-actions">
-            <button class="btn bg-primary-blue text-white hover:bg-[#4a92ff] py-2 px-6 h-auto font-semibold text-xl">Show Details</button>
+            <button onclick="showDetails('${phone.slug}')" class="btn bg-primary-blue text-white hover:bg-[#4a92ff] py-2 px-6 h-auto font-semibold text-xl">Show Details</button>
         </div>
     </div>
     `;
@@ -67,6 +67,42 @@ function displayPhone(phones, isShowBtnVisible) {
   });
   showLoader(false);
 }
+
+// show details
+
+const showDetails = async (id) => {
+  showLoader(true);
+  const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+  const data = await res.json();
+  const phone = data.data;
+  console.log(phone);
+
+  document.getElementById("modal-content-container").innerHTML = `
+  <div class="p-10">
+    <img class="mx-auto" src="${phone?.image}" alt="Phone" />
+  </div>
+  <h2 class="font-bold text-3xl text-dark-2">
+    ${phone?.name}
+  </h2>
+  <p class="text-dark-3 pt-6 pb-5">
+    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+  </p>
+
+  <ul class="space-y-4">
+    <li><strong>Storage :</strong> ${phone?.mainFeatures?.storage}</li>
+    <li><strong>Display Size :</strong> ${phone?.mainFeatures?.displaySize}</li>
+    <li><strong>Chipset :</strong> ${phone?.mainFeatures?.chipSet}</li>
+    <li><strong>Memory :</strong> ${phone?.mainFeatures?.memory}</li>
+    <li><strong>Slug :</strong> ${phone?.slug}</li>
+    <li><strong>Release data :</strong> ${phone?.releaseDate}</li>
+    <li><strong>Brand :</strong> ${phone?.brand}</li>
+    <li><strong>GPS :</strong> ${phone?.others?.GPS}</li>
+  </ul>
+  `;
+
+  showLoader(false);
+  detailsModal.showModal();
+};
 
 // show phones on search
 

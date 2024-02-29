@@ -19,6 +19,7 @@
           <a class="btn bg-primary-blue text-white hover:bg-[#4a92ff] py-4 px-10 h-auto font-bold text-xl">Sign Up</a>
         </div>
       </nav>
+
       <!-- banner -->
       <section class="text-center text-dark-3 text-lg mt-12 px-4">
         <h1 class="text-[4rem] leading-[6.125rem] text-dark-1 font-bold">Apple Iphone 13 Pro Max</h1>
@@ -29,6 +30,7 @@
         <img class="mx-auto mt-[4.5rem]" src="./images/banner-img.png" alt="Apple Iphone 13 Pro Max" />
       </section>
     </header>
+
     <main class="max-w-[1580px] w-11/12 mx-auto">
       <!-- search product -->
       <section id="search-container" class="mt-28 mb-12">
@@ -61,7 +63,41 @@
           <button onclick="showAll()" class="btn bg-primary-blue text-white hover:bg-[#4a92ff] py-4 px-10 h-auto font-bold text-xl">Show All</button>
         </div>
       </section>
+
+      <!-- details modal -->
+      <dialog id="detailsModal" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+          <div id="modal-content-container">
+            <div class="p-10">
+              <img class="mx-auto" src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-13-pro-max.jpg" alt="Phone" />
+            </div>
+            <h2 class="font-bold text-3xl text-dark-2">Iphone 13 Pro Max</h2>
+            <p class="text-dark-3 pt-6 pb-5">
+              It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+            </p>
+
+            <ul class="space-y-4">
+              <li><strong>Storage :</strong> 128GB/256GB/1TB Storage, No card slot</li>
+              <li><strong>Display Size :</strong> 6.7 Inches, 109.8 cm</li>
+              <li><strong>Chipset :</strong> Apple A15 Bionic</li>
+              <li><strong>Memory :</strong> 128GB 6 GB RAM, 256GB RAM, 512GB RAM1 1TB 6GB RAM</li>
+              <li><strong>Slug :</strong> Applice_Iphone_13_Pro_Max</li>
+              <li><strong>Release data :</strong> Released 2021, September 24</li>
+              <li><strong>Brand :</strong> Apple</li>
+              <li><strong>GPS :</strong> AYes, with A-GPS, GLONASS, GALILEO, BDS, QZSS</li>
+            </ul>
+          </div>
+
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn text-white bg-[#DC3545] hover:bg-[#ff0019] py-4 px-10 h-auto font-bold text-xl">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </main>
+
     <footer class="bg-[#0D6EFD0D] text-center md:text-left py-28 mt-28">
       <section class="max-w-[1580px] w-11/12 mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-center border-b border-[#CFCFCF] pb-12">
