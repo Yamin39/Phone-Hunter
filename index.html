@@ -59,6 +59,9 @@
       <!-- products -->
       <section>
         <div id="product-container" class="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"></div>
+        <div id="notFoundContainer" class="text-center hidden">
+          <h1 class="text-2xl font-bold text-[#DC3545]"></h1>
+        </div>
         <div id="showAllBtnContainer" class="text-center mt-12 hidden">
           <button onclick="showAll()" class="btn bg-primary-blue text-white hover:bg-[#4a92ff] py-4 px-10 h-auto font-bold text-xl">Show All</button>
         </div>
@@ -67,26 +70,7 @@
       <!-- details modal -->
       <dialog id="detailsModal" class="modal modal-bottom sm:modal-middle">
         <div class="modal-box">
-          <div id="modal-content-container">
-            <div class="p-10">
-              <img class="mx-auto" src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-13-pro-max.jpg" alt="Phone" />
-            </div>
-            <h2 class="font-bold text-3xl text-dark-2">Iphone 13 Pro Max</h2>
-            <p class="text-dark-3 pt-6 pb-5">
-              It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-            </p>
-
-            <ul class="space-y-4">
-              <li><strong>Storage :</strong> 128GB/256GB/1TB Storage, No card slot</li>
-              <li><strong>Display Size :</strong> 6.7 Inches, 109.8 cm</li>
-              <li><strong>Chipset :</strong> Apple A15 Bionic</li>
-              <li><strong>Memory :</strong> 128GB 6 GB RAM, 256GB RAM, 512GB RAM1 1TB 6GB RAM</li>
-              <li><strong>Slug :</strong> Applice_Iphone_13_Pro_Max</li>
-              <li><strong>Release data :</strong> Released 2021, September 24</li>
-              <li><strong>Brand :</strong> Apple</li>
-              <li><strong>GPS :</strong> AYes, with A-GPS, GLONASS, GALILEO, BDS, QZSS</li>
-            </ul>
-          </div>
+          <div id="modal-content-container"></div>
 
           <div class="modal-action">
             <form method="dialog">

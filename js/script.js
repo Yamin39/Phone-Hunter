@@ -18,14 +18,12 @@ async function loadPhone(searchText, isShowBtnVisible) {
   const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
   const data = await res.json();
   const phones = data.data;
-  // checking data in console
-  // console.log(data, phones);
-  displayPhone(phones, isShowBtnVisible);
+  displayPhone(phones, isShowBtnVisible, searchText);
 }
 
 // displaying phones
 
-function displayPhone(phones, isShowBtnVisible) {
+function displayPhone(phones, isShowBtnVisible, searchText) {
   const phoneContainer = document.getElementById("product-container");
   phoneContainer.innerText = ``;
   const showAllBtnContainer = document.getElementById("showAllBtnContainer");
@@ -33,6 +31,18 @@ function displayPhone(phones, isShowBtnVisible) {
     showAllBtnContainer.classList.remove("hidden");
   } else {
     showAllBtnContainer.classList.add("hidden");
+  }
+  // show massage when no data found
+  const notFoundContainer = document.getElementById("notFoundContainer");
+  const notFoundText = document.querySelector("#notFoundContainer h1");
+  if (searchText.length === 0) {
+    notFoundContainer.classList.remove("hidden");
+    notFoundText.innerText = "Search Field is empty";
+  } else if (phones.length === 0) {
+    notFoundContainer.classList.remove("hidden");
+    notFoundText.innerText = "No Device Found";
+  } else {
+    notFoundContainer.classList.add("hidden");
   }
   // showing only 6 phones on search result
   if (!isShowBtnVisible) {
@@ -75,7 +85,6 @@ const showDetails = async (id) => {
   const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
   const data = await res.json();
   const phone = data.data;
-  console.log(phone);
 
   document.getElementById("modal-content-container").innerHTML = `
   <div class="p-10">
@@ -96,7 +105,7 @@ const showDetails = async (id) => {
     <li><strong>Slug :</strong> ${phone?.slug}</li>
     <li><strong>Release data :</strong> ${phone?.releaseDate}</li>
     <li><strong>Brand :</strong> ${phone?.brand}</li>
-    <li><strong>GPS :</strong> ${phone?.others?.GPS}</li>
+    <li><strong>GPS :</strong> ${phone?.others?.GPS || "No GPS"}</li>
   </ul>
   `;
 
@@ -114,8 +123,6 @@ let arr = [];
 function searchPhone() {
   arr = arr.slice(1, 1);
   arr.push(searchText());
-
-  console.log(arr);
 
   loadPhone(searchText());
   showLoader(true);
@@ -145,8 +152,3 @@ const showAll = () => {
   loadPhone(arr[0], true);
   showLoader(true);
 };
-
-// let testArr = [1, 2, 3, 4];
-// console.log(testArr);
-// testArr = testArr.slice(1, 1);
-// console.log(testArr);
