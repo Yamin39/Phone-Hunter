@@ -14,28 +14,33 @@ tailwind.config = {
 
 // getting data by api
 
-async function loadPhone(searchText) {
+async function loadPhone(searchText, isShowBtnVisible) {
   const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
   const data = await res.json();
   const phones = data.data;
   // checking data in console
-  console.log(data, phones);
-  displayPhone(phones);
+  // console.log(data, phones);
+  displayPhone(phones, isShowBtnVisible);
 }
 
 // displaying phones
 
-function displayPhone(phones) {
+function displayPhone(phones, isShowBtnVisible) {
   const phoneContainer = document.getElementById("product-container");
   phoneContainer.innerText = ``;
   const showAllBtnContainer = document.getElementById("showAllBtnContainer");
-  if (phones.length > 6) {
+  if (phones.length > 6 && !isShowBtnVisible) {
     showAllBtnContainer.classList.remove("hidden");
   } else {
     showAllBtnContainer.classList.add("hidden");
   }
   // showing only 6 phones on search result
-  phones = phones.slice(0, 6);
+  if (!isShowBtnVisible) {
+    phones = phones.slice(0, 6);
+  }
+  ////----------------\\\\
+  console.log(isShowBtnVisible);
+  ////----------------\\\\
   phones.forEach((phone) => {
     const div = document.createElement("div");
     div.classList = "card border border-[#CFCFCF]";
@@ -66,10 +71,17 @@ function displayPhone(phones) {
 // show phones on search
 
 const searchField = document.getElementById("searchField");
+const searchText = () => searchField.value;
+
+let arr = [];
 
 function searchPhone() {
-  const searchText = searchField.value;
-  loadPhone(searchText);
+  arr = arr.slice(1, 1);
+  arr.push(searchText());
+
+  console.log(arr);
+
+  loadPhone(searchText());
   showLoader(true);
 }
 
@@ -89,3 +101,16 @@ const showLoader = (isLoad) => {
     loaderContainer.classList.add("hidden");
   }
 };
+
+// showAll
+
+const showAll = () => {
+  // searchPhone();
+  loadPhone(arr[0], true);
+  showLoader(true);
+};
+
+// let testArr = [1, 2, 3, 4];
+// console.log(testArr);
+// testArr = testArr.slice(1, 1);
+// console.log(testArr);
