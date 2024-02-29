@@ -46,9 +46,20 @@
         </div>
       </section>
 
+      <!-- loader -->
+      <div id="loader-container" class="hidden">
+        <div class="fixed top-0 left-0 w-screen h-screen bg-[#00000065] z-10"></div>
+        <div class="fixed top-[50%] left-[45%] z-20">
+          <span class="loading loading-ring w-20 bg-[#000000]"></span>
+        </div>
+      </div>
+
       <!-- products -->
       <section>
         <div id="product-container" class="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"></div>
+        <div id="showAllBtnContainer" class="text-center mt-12 hidden">
+          <button class="btn bg-primary-blue text-white hover:bg-[#4a92ff] py-4 px-10 h-auto font-bold text-xl">Show All</button>
+        </div>
       </section>
     </main>
     <footer class="bg-[#0D6EFD0D] text-center md:text-left py-28 mt-28">
@@ -56,7 +67,7 @@
         <div class="flex flex-col md:flex-row justify-between items-center border-b border-[#CFCFCF] pb-12">
           <div>
             <h1 class="font-open-sans text-[2.813rem] text-dark-1">Phone Hunter</h1>
-            <p class="font-semibold text-lg text-dark-3">You can definitely work.</p>
+            <p class="font-semibold text-lg text-dark-3">Shop smartphones online now.</p>
           </div>
           <div class="flex gap-4 lg:gap-7 flex-col md:flex-row mt-6 md:mt-0 items-center justify-center">
             <ul class="flex gap-4">

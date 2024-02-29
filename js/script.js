@@ -18,6 +18,7 @@ async function loadPhone(searchText) {
   const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
   const data = await res.json();
   const phones = data.data;
+  // checking data in console
   console.log(data, phones);
   displayPhone(phones);
 }
@@ -27,6 +28,14 @@ async function loadPhone(searchText) {
 function displayPhone(phones) {
   const phoneContainer = document.getElementById("product-container");
   phoneContainer.innerText = ``;
+  const showAllBtnContainer = document.getElementById("showAllBtnContainer");
+  if (phones.length > 6) {
+    showAllBtnContainer.classList.remove("hidden");
+  } else {
+    showAllBtnContainer.classList.add("hidden");
+  }
+  // showing only 6 phones on search result
+  phones = phones.slice(0, 6);
   phones.forEach((phone) => {
     const div = document.createElement("div");
     div.classList = "card border border-[#CFCFCF]";
@@ -51,12 +60,32 @@ function displayPhone(phones) {
     `;
     phoneContainer.appendChild(div);
   });
+  showLoader(false);
 }
 
 // show phones on search
 
+const searchField = document.getElementById("searchField");
+
 function searchPhone() {
-  const searchText = document.getElementById("searchField").value;
-  console.log(searchText);
+  const searchText = searchField.value;
   loadPhone(searchText);
+  showLoader(true);
 }
+
+searchField.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    searchPhone();
+  }
+});
+
+// loader
+
+const showLoader = (isLoad) => {
+  const loaderContainer = document.getElementById("loader-container");
+  if (isLoad) {
+    loaderContainer.classList.remove("hidden");
+  } else {
+    loaderContainer.classList.add("hidden");
+  }
+};
