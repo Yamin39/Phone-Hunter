@@ -14,20 +14,19 @@ tailwind.config = {
 
 // getting data by api
 
-async function loadPhone() {
-  const res = await fetch("https://openapi.programming-hero.com/api/phones?search=iphone");
+async function loadPhone(searchText) {
+  const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
   const data = await res.json();
   const phones = data.data;
   console.log(data, phones);
   displayPhone(phones);
 }
 
-loadPhone();
-
 // displaying phones
 
 function displayPhone(phones) {
   const phoneContainer = document.getElementById("product-container");
+  phoneContainer.innerText = ``;
   phones.forEach((phone) => {
     const div = document.createElement("div");
     div.classList = "card border border-[#CFCFCF]";
@@ -52,4 +51,12 @@ function displayPhone(phones) {
     `;
     phoneContainer.appendChild(div);
   });
+}
+
+// show phones on search
+
+function searchPhone() {
+  const searchText = document.getElementById("searchField").value;
+  console.log(searchText);
+  loadPhone(searchText);
 }
